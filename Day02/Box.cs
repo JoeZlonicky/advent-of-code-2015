@@ -15,35 +15,34 @@ internal class Box
 
     public Box(string line)
     {
-        var dimensions = from dimension in line.Split('x') select int.Parse(dimension);
-        var enumerable = dimensions as int[] ?? dimensions.ToArray();
-        Width = enumerable[0];
-        Height = enumerable[1];
-        Depth = enumerable[2];
+        var dimensions = (from dimension in line.Split('x') select int.Parse(dimension)).ToArray();
+        Width = dimensions[0];
+        Height = dimensions[1];
+        Depth = dimensions[2];
     }
     
     public int CalcRequiredWrappingPaper()
     {
-        var wh = Width * Height;
-        var wd = Width * Depth;
-        var hd = Height * Depth;
-        var required = wh * 2 + wd * 2 + hd * 2;
-        required += CalcSmallest(wh, wd, hd);
+        int wh = Width * Height;
+        int wd = Width * Depth;
+        int hd = Height * Depth;
+        int required = wh * 2 + wd * 2 + hd * 2;
+        required += Min(wh, wd, hd);
         return required;
     }
 
     public int CalcRequiredRibbon()
     {
-        var wh = 2 * (Width + Height);
-        var wd = 2 * (Width + Depth);
-        var hd = 2 * (Height + Depth);
+        int wh = 2 * (Width + Height);
+        int wd = 2 * (Width + Depth);
+        int hd = 2 * (Height + Depth);
 
-        var required = CalcSmallest(wh, wd, hd);
+        int required = Min(wh, wd, hd);
         required += Width * Height * Depth;
         return required;
     }
     
-    private static int CalcSmallest(params int[] n)
+    private static int Min(params int[] n)
     {
         return n.Min();
     }
