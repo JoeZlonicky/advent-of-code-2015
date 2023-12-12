@@ -2,16 +2,24 @@
 
 internal static class Day01
 {
+    private const string InputFileName = "./Inputs/FullInput.txt";
     private static void Main()
     {
-        const string inputFileName = "./Inputs/FullInput.txt";
-        string text = File.ReadAllText(inputFileName);
+        string text = File.ReadAllText(InputFileName);
 
+        (int finalFloor, int positionOfEnteringBasement) result = NavigateBuilding(text);
+        
+        Console.WriteLine($"Final floor: {result.finalFloor}");
+        Console.WriteLine($"Position of entering basement: {result.positionOfEnteringBasement}");
+    }
+
+    private static (int finalFloor, int positionOfEnteringBasement) NavigateBuilding(string directions)
+    {
         int floor = 0;
         int positionOfEnteringBasement = -1;
-        for (int i = 0; i < text.Length; ++i)
+        for (int i = 0; i < directions.Length; ++i)
         {
-            char c = text[i];
+            char c = directions[i];
             switch (c)
             {
                 case '(':
@@ -27,7 +35,6 @@ internal static class Day01
             }
         }
 
-        Console.WriteLine($"Final floor: {floor}");
-        Console.WriteLine($"Position of entering basement: {positionOfEnteringBasement}");
+        return (floor, positionOfEnteringBasement);
     }
 }
