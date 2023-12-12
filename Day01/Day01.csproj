@@ -7,6 +7,7 @@
         <Nullable>enable</Nullable>
         <RootNamespace>Day01</RootNamespace>
     </PropertyGroup>
+    
     <ItemGroup>
         <Content Include="Inputs\**">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
