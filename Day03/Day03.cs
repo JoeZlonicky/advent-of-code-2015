@@ -4,25 +4,23 @@ internal static class Day03
 {
     private const string InputFileName = "./Inputs/PuzzleInput.txt";
 
-    private static void Main(string[] args)
+    private static void Main()
     {
-        var text = File.ReadAllText(InputFileName);
-        var nVisited = CountHousesVisited(ref text);
-        var nVisitedWithRoboSanta = CountHousesVisited(ref text, 2);
-        Console.WriteLine($"Houses visited with just one Santa: {nVisited}");
-        Console.WriteLine($"Houses visited with Santa and Robo-Santa: {nVisitedWithRoboSanta}");
+        string text = File.ReadAllText(InputFileName);
+        Console.WriteLine($"Houses visited with just one Santa: {CountHousesVisited(text)}");
+        Console.WriteLine($"Houses visited with Santa and Robo-Santa: {CountHousesVisited(text, 2)}");
     }
     
-    private static int CountHousesVisited(ref string text, int nSantas=1)
+    private static int CountHousesVisited(string text, int nSantas=1)
     {
         var visits = new Dictionary<(int x, int y), int>
         {
             [(0, 0)] = nSantas
         };
         var santaPositions = new (int x, int y)[nSantas];
-        var currentSanta = 0;
+        int currentSanta = 0;
         
-        foreach (var c in text)
+        foreach (char c in text)
         {
             ref var pos = ref santaPositions[currentSanta];
             switch (c)
