@@ -23,26 +23,24 @@ internal static class Day03
         foreach (char c in text)
         {
             ref var pos = ref santaPositions[currentSanta];
-            switch (c)
-            {
-                case '<':
-                    pos.x -= 1;
-                    break;
-                case '^':
-                    pos.y += 1;
-                    break;
-                case '>':
-                    pos.x += 1;
-                    break;
-                case 'v':
-                    pos.y -= 1;
-                    break;
-            }
-
+            pos = Move(pos, c);
+            
             visits[pos] = visits.GetValueOrDefault(pos, 0) + 1;
             currentSanta = (currentSanta + 1) % nSantas;
         }
 
         return visits.Keys.Count;
+    }
+
+    private static (int x, int y) Move((int x, int y) pos, char direction)
+    {
+        return direction switch
+        {
+            '<' => (pos.x - 1, pos.y),
+            '^' => (pos.x, pos.y + 1),
+            '>' => (pos.x + 1, pos.y),
+            'v' => (pos.x, pos.y - 1),
+            _ => (pos.x, pos.y)
+        };
     }
 }
