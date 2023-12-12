@@ -5,14 +5,13 @@ internal static class Day01
     private static void Main()
     {
         const string inputFileName = "./Inputs/FullInput.txt";
-        var text = File.ReadAllText(inputFileName);
+        string text = File.ReadAllText(inputFileName);
 
-        var floor = 0;
-        var positionOfEnteringBasement = -1;
-
-        for (var i = 0; i < text.Length; ++i)
+        int floor = 0;
+        int positionOfEnteringBasement = -1;
+        for (int i = 0; i < text.Length; ++i)
         {
-            var c = text[i];
+            char c = text[i];
             switch (c)
             {
                 case '(':
@@ -28,6 +27,7 @@ internal static class Day01
             }
         }
 
-        Console.WriteLine($"Final floor: {floor}\nPosition of entering basement: {positionOfEnteringBasement}");
+        Console.WriteLine($"Final floor: {floor}");
+        Console.WriteLine($"Position of entering basement: {positionOfEnteringBasement}");
     }
 }
