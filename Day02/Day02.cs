@@ -2,11 +2,10 @@
 
 internal static class Day02
 {
+    private const string InputFileName = "./Inputs/FullInput.txt";
     private static void Main()
     {
-        const string inputFileName = "./Inputs/FullInput.txt";
-
-        var boxes = (from line in File.ReadAllLines(inputFileName) where line != "" select new Box(line)).ToArray();
+        var boxes = (from line in File.ReadAllLines(InputFileName) where line != "" select new Box(line)).ToArray();
         int totalWrappingPaper = boxes.Aggregate(0, (total, box) => total + box.CalcRequiredWrappingPaper());
         int totalRibbon = boxes.Aggregate(0, (total, box) => total + box.CalcRequiredRibbon());
 
