@@ -2,7 +2,7 @@
 
 internal static class Day01
 {
-    private const string InputFileName = "./Inputs/FullInput.txt";
+    private const string InputFileName = "./Inputs/Puzzle.txt";
     private static void Main()
     {
         string text = File.ReadAllText(InputFileName);

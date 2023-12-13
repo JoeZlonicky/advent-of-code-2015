@@ -2,7 +2,7 @@
 
 internal static class Day02
 {
-    private const string InputFileName = "./Inputs/FullInput.txt";
+    private const string InputFileName = "./Inputs/Puzzle.txt";
     private static void Main()
     {
         var boxes = (from line in File.ReadAllLines(InputFileName) where line != "" select new Box(line)).ToArray();
