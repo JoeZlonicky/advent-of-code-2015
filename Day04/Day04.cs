@@ -5,13 +5,14 @@ namespace Day04;
 
 internal static class Day04
 {
-    private const string StartString = "yzbqklnj";
+    private const string InputFileName = "./Inputs/Puzzle.txt";
     internal static void Main()
     {
-        int startsWithFiveZeros = CalcFirstHash(StartString, s => StartsWithNZeroes(s, 5));
+        string startString = File.ReadAllText(InputFileName);
+        int startsWithFiveZeros = CalcFirstHash(startString, s => StartsWithNZeroes(s, 5));
         Console.WriteLine($"First hash with 5 zeros: {startsWithFiveZeros}");
         
-        int startsWithSixZeros = CalcFirstHash(StartString, s => StartsWithNZeroes(s, 6));
+        int startsWithSixZeros = CalcFirstHash(startString, s => StartsWithNZeroes(s, 6));
         Console.WriteLine($"First hash with 6 zeros: {startsWithSixZeros}");
     }
 
