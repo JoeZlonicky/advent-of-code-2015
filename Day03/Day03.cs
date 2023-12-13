@@ -2,7 +2,7 @@
 
 internal static class Day03
 {
-    private const string InputFileName = "./Inputs/PuzzleInput.txt";
+    private const string InputFileName = "./Inputs/Puzzle.txt";
 
     private static void Main()
     {
