@@ -2,7 +2,7 @@
 
 public class Emulator
 {
-    private static int _maxValue = 65535;
+    private static readonly int bitMask = 65535;
     
     private Dictionary<string, int> variables;
 
@@ -40,7 +40,7 @@ public class Emulator
 
     private void Store(string variable, int value)
     {
-        variables[variable] = value % (_maxValue + 1);
+        variables[variable] = value & bitMask;
     }
 
     private static int AndOperation(int lhs, int rhs)
@@ -55,7 +55,7 @@ public class Emulator
 
     private static int NotOperation(int value)
     {
-        return _maxValue - value;
+        return ~value;
     }
 
     private static int RShiftOperation(int lhs, int rhs)
@@ -70,6 +70,6 @@ public class Emulator
 
     private int ParseValue(string value)
     {
-        return int.TryParse(value, out int i) ? i : variables.GetValueOrDefault(value, 0);
+        return int.TryParse(value, out int i) ? i : variables.GetValueOrDefault(value, 0) & bitMask;
     }
 }
