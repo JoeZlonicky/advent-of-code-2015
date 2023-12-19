@@ -11,7 +11,7 @@ internal static class Day07
     {
         string[] lines = File.ReadAllLines(InputFileName);
         var re = new Regex(CommandPattern, RegexOptions.IgnoreCase);
-        var emulator = new Emulator();
+        var emulator = new CircuitBoard();
         
         foreach (string line in lines)
         {
@@ -28,9 +28,9 @@ internal static class Day07
                 leftOperand = "";
             }
             
-            emulator.ExecuteCommand(leftOperand, operation, rightOperand, output);
+            emulator.AddConnection(leftOperand, operation, rightOperand, output);
         }
         
-        Console.WriteLine(emulator.GetVariableValue("a"));
+        Console.WriteLine(emulator.EvaluateNode("a"));
     }
 }
