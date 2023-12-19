@@ -30,7 +30,12 @@ internal static class Day07
             
             emulator.AddConnection(leftOperand, operation, rightOperand, output);
         }
+
+        int aValue = emulator.EvaluateNode("a");
+        Console.WriteLine($"Value of a: {aValue}");
         
-        Console.WriteLine(emulator.EvaluateNode("a"));
+        emulator.OverrideNodeValue("b", aValue);
+        aValue = emulator.EvaluateNode("a");
+        Console.WriteLine($"Value of a after overriding b with the previous value: {aValue}");
     }
 }
